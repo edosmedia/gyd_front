@@ -1,6 +1,7 @@
 import { auth } from "../services/auth";
 
 const Login = () => {
+  
   document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("flogin");
     if (form) {

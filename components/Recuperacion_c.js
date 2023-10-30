@@ -1,6 +1,8 @@
 import { auth } from "../services/auth";
 
 const Recuperacion_c = () => {
+
+  
    return `<div class="tap-top"><i data-feather="chevrons-up"></i></div>
   <!-- tap on tap ends-->
   <!-- page-wrapper Start-->
