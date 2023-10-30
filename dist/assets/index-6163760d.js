@@ -1,8 +1,123 @@
-import { auth } from "../services/auth";
-
-const Dashboard = () => {
-
-   return `<div class="page-wrapper compact-wrapper" id="pageWrapper">
+(function(){const s=document.createElement("link").relList;if(s&&s.supports&&s.supports("modulepreload"))return;for(const a of document.querySelectorAll('link[rel="modulepreload"]'))t(a);new MutationObserver(a=>{for(const i of a)if(i.type==="childList")for(const o of i.addedNodes)o.tagName==="LINK"&&o.rel==="modulepreload"&&t(o)}).observe(document,{childList:!0,subtree:!0});function e(a){const i={};return a.integrity&&(i.integrity=a.integrity),a.referrerPolicy&&(i.referrerPolicy=a.referrerPolicy),a.crossOrigin==="use-credentials"?i.credentials="include":a.crossOrigin==="anonymous"?i.credentials="omit":i.credentials="same-origin",i}function t(a){if(a.ep)return;a.ep=!0;const i=e(a);fetch(a.href,i)}})();const d={dev:{baseUrlApi:"http://test-ws.sial.cl:3113/v1/",token:"token"},prod:{baseUrlApi:"URL",token:"token"}},r="dev",n=d[r].baseUrlApi,p=d[r].token;async function v(l){try{const s=await fetch(`${n}autentificacion/`,{method:"POST",headers:{"Content-Type":"application/json",Authorization:`Bearer ${p}`},body:JSON.stringify(l)}),e=await s.json(),t={status:s.status,data:e};if(s.status===200){const a=e.token;let i=JSON.stringify(e);localStorage.setItem("profile",i),localStorage.setItem("token",a),console.log("Login Exitoso"),console.log("Token de autenticación:",a)}else if(s.status===401)console.error("Error de autenticación");else if(s.status===400){const a=await s.json();throw new Error(`Error en la solicitud: ${a.message}`)}else throw new Error("Error en la solicitud");return t}catch(s){throw console.error(s.message),s}}const m=()=>(document.addEventListener("DOMContentLoaded",()=>{const l=document.getElementById("flogin");l?l.onsubmit=e=>{e.preventDefault(),s()}:console.error("El formulario no se encontró en el DOM.");const s=async e=>{const t=document.getElementById("correo"),a=document.getElementById("contrasena");if(!t||!a){console.error("No se encontraron los campos de correo y contraseña en el DOM.");return}const i={usuario:t.value,password:a.value};let o=await v(i);t.value===""||a.value===""||(o.status===200&&location.assign("/dashboard"),console.log(o))}}),`  <div class="container-fluid p-0">
+    <div class="row m-0">
+      <div class="col-12 p-0">
+        <div class="login-card">
+          <div>
+            <div>
+              <a class="logo" href="#">
+                <img class="img-fluid" id="logo" style="width: 20rem"  alt="loginpage" />
+              </a>
+            </div>
+            <div class="login-main">
+              <form class="theme-form" id="flogin" >
+                <h4>Iniciar sesión en la cuenta</h4>
+                <p>Ingrese su correo electrónico y contraseña para iniciar sesión</p>
+                <div class="form-group">
+                  <label class="col-form-label">Correo Electronico</label>
+                  <input class="form-control" id="correo"  type="email" required="" placeholder="micorreo@gmail.com" />
+                </div>
+                <div class="form-group">
+                  <label class="col-form-label">Contraseña</label>
+                  <input class="form-control" id="contrasena" type="password" name="password" required="" placeholder="*********"></input>
+                </div>
+                <div class="checkbox p-0">
+                  <a class="link" href="/contrasena_perdida/">
+                    ¿Has olvidado tu contraseña?
+                  </a>
+                  <button class="btn btn-primary btn-block" type="submit">
+                    Iniciar sesión
+                  </button>
+                </div>
+              </form>
+              <p id="error"></p>
+              <p class="mt-4 mb-0">
+                ¿No tienes cuenta?
+                <a class="ms-2" href="/registro">
+                  Crear una cuenta
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>`),u=()=>`<div class="container-fluid p-0">
+    <div class="row m-0">
+      <div class="col-12 p-0">
+        <div class="login-card">
+          <div>
+            <div>
+              <a class="logo" href="/">
+                <img class="img-fluid for-light" id="logo" style="width: 20rem" />
+              </a>
+            </div>
+            <div class="login-main">
+              <form class="theme-form">
+                <h4>Crear una cuenta</h4>
+                <p>Ingrese sus datos personales para crear una cuenta</p>
+  
+                <div class="form-group">
+                  <label class="col-form-label pt-0">Numero de Referido</label>
+                  <div class="row g-2">
+                    <div class="col-12">
+                      <input class="form-control" type="text" name="numero_ref" id="numero_ref" placeholder="Ej.81273" required />
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-form-label pt-0">Tu Datos</label>
+                  <div class="row g-2">
+                    <div class="col-6">
+                      <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Nombre" required />
+                    </div>
+                    <div class="col-6">
+                      <input class="form-control" type="text" name="apellido" id="apellido" required="" placeholder="Apellido" />
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-form-label pt-0"> Tu Direccion</label>
+                  <div class="row g-2">
+                    <div class="col-12">
+                      <input class="form-control" type="text" id="direccion" required="" placeholder="Direccion" />
+                    </div>
+                    <div class="col-6">
+                      <input class="form-control" type="text" id="ciudad" required="" placeholder="Ciudad" />
+                    </div>
+                    <div class="col-6">
+                      <input class="form-control" type="text" id="estado" required="" placeholder="Estado" />
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-form-label">Datos de Contacto</label>
+                  <input class="form-control" type="email" name="email" required="" placeholder="Email" />
+                  <input class="form-control" type="number" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required placeholder="Telefono" maxLength={20} />
+                </div>
+                <div class="form-group">
+                  <label class="col-form-label">Contraseña</label>
+                  <input class="form-control" type="password" name="password" required placeholder="*********" />
+                </div>
+  
+                <div class="form-group mb-0">
+                  <button class="btn btn-primary btn-block" type="submit">
+                    Crear una cuenta
+                  </button>
+                </div>
+  
+                <p class="mt-4 mb-0">
+                  ¿Ya tienes una cuenta?
+                  <a class="ms-2" href="/">
+                    Iniciar sesión
+                  </a>
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>`,h=()=>`<div class="page-wrapper compact-wrapper" id="pageWrapper">
     <!-- Page Header Start-->
     <div class="page-header">
       <div class="header-wrapper row m-0">
@@ -145,8 +260,8 @@ const Dashboard = () => {
               <div class="ProfileCard-realName">{{name}}</div>
               </div>
               </div>
-            </script>
-        <script class="empty-template" type="text/x-handlebars-template"><div class="EmptyMessage">Your search turned up 0 results. This most likely means the backend is down, yikes!</div></script>
+            <\/script>
+        <script class="empty-template" type="text/x-handlebars-template"><div class="EmptyMessage">Your search turned up 0 results. This most likely means the backend is down, yikes!</div><\/script>
       </div>
     </div>
     <!-- Page Header Ends                              -->
@@ -364,7 +479,52 @@ const Dashboard = () => {
         </div>
       </footer>
     </div>
-  </div>`;
-};
-
-export default Dashboard;
+  </div>`,f=()=>`<div class="tap-top"><i data-feather="chevrons-up"></i></div>
+  <!-- tap on tap ends-->
+  <!-- page-wrapper Start-->
+  <div class="page-wrapper">
+    <div class="container-fluid p-0">
+      <div class="row">
+        <div class="col-12">
+          <div class="login-card">
+            <div>
+              <div><a class="logo" href="index.html"><img class="img-fluid for-light" style="width: 20vw;" src="../assets/images/logo/logo.png" alt="looginpage"><img style="width: 20vw;" class="img-fluid for-dark" src="../assets/images/logo/logo.png" alt="looginpage"></a></div>
+              <div class="login-main">
+                <form class="theme-form">
+                  <h4>Restablecer su contraseña</h4>
+                  <div class="form-group">
+                    <label class="col-form-label">Introduzca su Email</label>
+                    <div class="row">
+                      <div class="col-12x col-sm-12">
+                        <input class="form-control mb-1" type="email" value="micorreo@gmail.com">
+                      </div>
+                      <div class="col-12">
+                        <button class="btn btn-primary btn-block m-t-10" type="submit">Solicitar</button>
+                      </div>
+                    </div>
+                  </div>
+  
+  
+                  <h6 class="mt-4">Crear contraseña</h6>
+                  <div class="form-group">
+                    <label class="col-form-label">Nueva Contraseña</label>
+                    <input class="form-control" type="password" name="login[password]" required="" placeholder="*********">
+                    <div class="show-hide"><span class="show"></span></div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-form-label">Repetir Contraseña</label>
+                    <input class="form-control" type="password" name="login[password]" required="" placeholder="*********">
+                  </div>
+                  <div class="form-group mb-0">
+                    <div class="checkbox p-0">
+                      <button class="btn btn-primary btn-block" type="submit">Cambiar </button>
+                    </div>
+                    <p class="mt-4 mb-0">¿Ya tienes una contraseña?<a class="ms-2" href="/">Iniciar Seccion</a></p>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>`,c=[{path:"/",component:{render:()=>m()}},{path:"/registro",component:{render:()=>u()}},{path:"/recuperacion_clave",component:{render:()=>f()}},{path:"/dashboard",component:{render:()=>h()}}];function g(){const l=window.location.pathname,s=c.find(e=>e.path===l);return{route:s,component:s?s.component:null}}const b={routes:c,match:g},y="/assets/logo-0116144d.png";document.addEventListener("DOMContentLoaded",()=>{document.getElementById("logo").src=y});const w=()=>{const{route:l,component:s}=b.match();return s.render()};document.querySelector("#app").innerHTML=w();

@@ -1,9 +1,7 @@
 import { auth } from "../services/auth";
 
 const Login = () => {
-  
    document.addEventListener("DOMContentLoaded", () => {
- 
       const form = document.getElementById("flogin");
       if (form) {
          form.onsubmit = (e) => {
@@ -28,11 +26,15 @@ const Login = () => {
             password: password.value,
          };
 
+         let req = await auth(data);
+
          if (correo.value === "" || password.value === "") {
             return;
          }
+         if (req.status === 200) {
+            location.assign("/dashboard")
+         }
 
-         let req = await auth(data);
          console.log(req);
       };
    });
