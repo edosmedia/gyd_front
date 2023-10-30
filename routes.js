@@ -1,4 +1,7 @@
 import Login from "./components/Login";
+import Registro from "./components/registro";
+import Dashboard from "./components/Dashboard" 
+import Recuperacion_c from "./components/Recuperacion_c";
 
 const routes = [
    {
@@ -6,6 +9,30 @@ const routes = [
       component: {
          render: () => {
             return Login();
+         },
+      },
+   },
+   {
+      path: "/registro",
+      component: {
+         render: () => {
+            return Registro();
+         },
+      },
+   },
+   {
+      path: "/recuperacion_clave",
+      component: {
+         render: () => {
+            return Recuperacion_c();
+         },
+      },
+   },
+   {
+      path: "/dashboard",
+      component: {
+         render: () => {
+            return Dashboard();
          },
       },
    },

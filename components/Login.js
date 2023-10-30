@@ -37,10 +37,6 @@ const Login = () => {
       };
    });
 
-
-
-
-
    return `  <div class="container-fluid p-0">
     <div class="row m-0">
       <div class="col-12 p-0">
@@ -75,7 +71,7 @@ const Login = () => {
               <p id="error"></p>
               <p class="mt-4 mb-0">
                 ¿No tienes cuenta?
-                <a class="ms-2" href="/registro/">
+                <a class="ms-2" href="/registro">
                   Crear una cuenta
                 </a>
               </p>
