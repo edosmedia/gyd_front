@@ -1,45 +1,45 @@
 import { auth } from "../services/auth";
 
 const Login = () => {
-   document.addEventListener("DOMContentLoaded", () => {
-      const form = document.getElementById("flogin");
-      if (form) {
-         form.onsubmit = (e) => {
-            e.preventDefault();
-            handleSubmit();
-         };
-      } else {
-         console.error("El formulario no se encontró en el DOM.");
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("flogin");
+    if (form) {
+      form.onsubmit = (e) => {
+        e.preventDefault();
+        handleSubmit();
+      };
+    } else {
+      console.error("El formulario no se encontró en el DOM.");
+    }
+
+    const handleSubmit = async (e) => {
+      const correo = document.getElementById("correo");
+      const password = document.getElementById("contrasena");
+
+      if (!correo || !password) {
+        console.error("No se encontraron los campos de correo y contraseña en el DOM.");
+        return;
       }
 
-      const handleSubmit = async (e) => {
-         const correo = document.getElementById("correo");
-         const password = document.getElementById("contrasena");
-
-         if (!correo || !password) {
-            console.error("No se encontraron los campos de correo y contraseña en el DOM.");
-            return;
-         }
-
-         const data = {
-            usuario: correo.value,
-            password: password.value,
-         };
-
-         let req = await auth(data);
-
-         if (correo.value === "" || password.value === "") {
-            return;
-         }
-         if (req.status === 200) {
-            location.assign("/dashboard")
-         }
-
-         console.log(req);
+      const data = {
+        usuario: correo.value,
+        password: password.value,
       };
-   });
 
-   return `  <div class="container-fluid p-0">
+      let req = await auth(data);
+
+      if (correo.value === "" || password.value === "") {
+        return;
+      }
+      if (req.status === 200) {
+        location.assign("/dashboard");
+      }
+
+      console.log(req);
+    };
+  });
+
+  return `  <div class="container-fluid p-0">
     <div class="row m-0">
       <div class="col-12 p-0">
         <div class="login-card">
