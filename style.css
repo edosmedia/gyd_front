@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css?family=Rubik:400,400i,500,500i,700,700i&amp;display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900&amp;display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css');
+@import '/assets/css/font-awesome.css';
+@import '/assets/css/vendors/icofont.css';
+@import '/assets/css/vendors/themify.css';
+@import '/assets/css/vendors/flag-icon.css';
+@import '/assets/css/vendors/feather-icon.css';
+@import '/assets/css/vendors/bootstrap.css';
+@import '/assets/css/style.css';
+@import '/assets/css/color-1.css';
+@import '/assets/css/responsive.css';
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
