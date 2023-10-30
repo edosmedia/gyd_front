@@ -1,6 +1,6 @@
 export async function creationUser(data) {
    try {
-      const response = await fetch("http://test-ws.sial.cl:3113/v1/RegistroCliente/", {
+      const response = await fetch("http://test-ws.sial.cl:3113/v1/RegitroCliente/", {
          method: "POST",
          headers: {
             "Content-Type": "application/json",
@@ -27,27 +27,24 @@ export async function creationUser(data) {
    }
 }
 
-async function main() {
-   let datarmada = {
-      nombre: "Eduard2o",
-      apellido: "Med2rano",
-      direccion: "ca2llex",
-      ciudad: "Regio2n Metropolitana",
-      estado: "a2",
-      telefono: "a2",
-      email: "tes2t31212@gmail.com",
-      nro_referido: "AB15422",
-      zip_code: "12224455",
-      usuario: "test8252423@gmail.com",
-      password: "dem2o",
-   };
 
-   try {
-      const res = await creationUser(datarmada);
-      console.log(res.status);
-   } catch (error) {
-      console.error(error.message);
-   }
-}
+let bodyContent = {
+   nombre: "Eduardo",
+   apellido: "Medrano",
+   direccion: "callex",
+   ciudad: "Region Metropolitana",
+   estado: "a",
+   telefono: "a",
+   email: "test@gmail.com",
+   nro_referido: "AB15422",
+   zip_code: "1224455",
+   usuario: "test1111222222222222222222221@gmail.com",
+   password: "demo",
+};
 
-main();
+let response = await fetch("http://test-ws.sial.cl:3113/v1/RegitroCliente/", {
+   method: "POST",
+   body: bodyContent,
+   headers: headersList,
+});
+console.log(await creationUser(bodyContent));
