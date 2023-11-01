@@ -1,4 +1,4 @@
-(function(){const s=document.createElement("link").relList;if(s&&s.supports&&s.supports("modulepreload"))return;for(const a of document.querySelectorAll('link[rel="modulepreload"]'))t(a);new MutationObserver(a=>{for(const i of a)if(i.type==="childList")for(const o of i.addedNodes)o.tagName==="LINK"&&o.rel==="modulepreload"&&t(o)}).observe(document,{childList:!0,subtree:!0});function e(a){const i={};return a.integrity&&(i.integrity=a.integrity),a.referrerPolicy&&(i.referrerPolicy=a.referrerPolicy),a.crossOrigin==="use-credentials"?i.credentials="include":a.crossOrigin==="anonymous"?i.credentials="omit":i.credentials="same-origin",i}function t(a){if(a.ep)return;a.ep=!0;const i=e(a);fetch(a.href,i)}})();const d={dev:{baseUrlApi:"http://test-ws.sial.cl:3113/v1/",token:"token"},prod:{baseUrlApi:"URL",token:"token"}},r="dev",n=d[r].baseUrlApi,p=d[r].token;async function v(l){try{const s=await fetch(`${n}autentificacion/`,{method:"POST",headers:{"Content-Type":"application/json",Authorization:`Bearer ${p}`},body:JSON.stringify(l)}),e=await s.json(),t={status:s.status,data:e};if(s.status===200){const a=e.token;let i=JSON.stringify(e);localStorage.setItem("profile",i),localStorage.setItem("token",a),console.log("Login Exitoso"),console.log("Token de autenticación:",a)}else if(s.status===401)console.error("Error de autenticación");else if(s.status===400){const a=await s.json();throw new Error(`Error en la solicitud: ${a.message}`)}else throw new Error("Error en la solicitud");return t}catch(s){throw console.error(s.message),s}}const m=()=>(document.addEventListener("DOMContentLoaded",()=>{const l=document.getElementById("flogin");l?l.onsubmit=e=>{e.preventDefault(),s()}:console.error("El formulario no se encontró en el DOM.");const s=async e=>{const t=document.getElementById("correo"),a=document.getElementById("contrasena");if(!t||!a){console.error("No se encontraron los campos de correo y contraseña en el DOM.");return}const i={usuario:t.value,password:a.value};let o=await v(i);t.value===""||a.value===""||(o.status===200&&location.assign("/dashboard"),console.log(o))}}),`  <div class="container-fluid p-0">
+(function(){const a=document.createElement("link").relList;if(a&&a.supports&&a.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))l(e);new MutationObserver(e=>{for(const s of e)if(s.type==="childList")for(const o of s.addedNodes)o.tagName==="LINK"&&o.rel==="modulepreload"&&l(o)}).observe(document,{childList:!0,subtree:!0});function i(e){const s={};return e.integrity&&(s.integrity=e.integrity),e.referrerPolicy&&(s.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?s.credentials="include":e.crossOrigin==="anonymous"?s.credentials="omit":s.credentials="same-origin",s}function l(e){if(e.ep)return;e.ep=!0;const s=i(e);fetch(e.href,s)}})();const r={dev:{baseUrlApi:"http://test-ws.sial.cl:3113/v1/",token:"token"},prod:{baseUrlApi:"URL",token:"token"}},d="dev",n=r[d].baseUrlApi,p=r[d].token;async function v(t){try{const a=await fetch(`${n}autentificacion/`,{method:"POST",headers:{"Content-Type":"application/json",Authorization:`Bearer ${p}`},body:JSON.stringify(t)}),i=await a.json(),l={status:a.status,data:i};if(a.status===200){const e=i.token;let s=JSON.stringify(i);localStorage.setItem("profile",s),localStorage.setItem("token",e),console.log("Login Exitoso"),console.log("Token de autenticación:",e)}else if(a.status===401)console.error("Error de autenticación");else if(a.status===400){const e=await a.json();throw new Error(`Error en la solicitud: ${e.message}`)}else throw new Error("Error en la solicitud");return l}catch(a){throw console.error(a.message),a}}const m=()=>(document.addEventListener("DOMContentLoaded",()=>{const t=document.getElementById("flogin");t?t.onsubmit=i=>{i.preventDefault(),a()}:console.error("El formulario no se encontró en el DOM.");const a=async i=>{const l=document.getElementById("correo"),e=document.getElementById("contrasena");if(!l||!e){console.error("No se encontraron los campos de correo y contraseña en el DOM.");return}const s={usuario:l.value,password:e.value};let o=await v(s);l.value===""||e.value===""||(o.status===200&&location.assign("/dashboard"),console.log(o))}}),`  <div class="container-fluid p-0">
     <div class="row m-0">
       <div class="col-12 p-0">
         <div class="login-card">
@@ -41,7 +41,7 @@
         </div>
       </div>
     </div>
-  </div>`),u=()=>`<div class="container-fluid p-0">
+  </div>`);async function u(t){try{const a=await fetch("http://test-ws.sial.cl:3113/v1/RegitroCliente/",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(t)}),i=await a.json(),l={status:a.status,data:i};if(a.status===200)console.log("Creación exitosa");else{const e=await a.json();throw new Error(`Error en la solicitud: ${e.message}`)}return console.log(l.status),l}catch{throw new Error("Error en la solicitud")}}async function f(t){try{const a=await fetch(`http://test-ws.sial.cl:3112/v1/CodigoReferido?id=${t}`,{method:"GET",headers:{"Content-Type":"application/json"}});if(a.status===200&&console.log("Exite del Referido"),a.status===400)console.log("Referido no exite");else{const i=await a.json();throw new Error(`Error en la solicitud: ${i.message}`)}return a.status}catch{throw new Error("Error en la solicitud")}}const g=()=>(document.addEventListener("DOMContentLoaded",()=>{const t=document.getElementById("fomulario_registro"),a=document.getElementById("mensaje"),i=document.getElementById("numero_ref").value;setInterval(()=>{if(i.length<6)return console.error("El número de referencia debe tener al menos 6 caracteres"),!1;if(i.length>10)return console.error("El número de referencia debe tener ser menor a 10 caracteres"),!1;switch(f(i)){case 200:return console.log("Número de Referido válido"),!0;case 404:return console.log("Número de Referido no válido"),!1;default:return console.log("Error en el servicio"),!1}},1e4),t.onsubmit=e=>{e.preventDefault();const s={nombre:document.getElementById("nombre").value,apellido:document.getElementById("apellido").value,direccion:document.getElementById("direccion").value,ciudad:document.getElementById("ciudad").value,estado:document.getElementById("estado").value,numero_telefonico:document.getElementById("numero_telefonico").value,email:document.getElementById("email").value,nro_referido:document.getElementById("numero_ref").value,zip_code:document.getElementById("codigopostal").value,usuario:document.getElementById("email").value,password:document.getElementById("password").value};!s.nombre||!s.apellido||!s.direccion||!s.ciudad||!s.estado||!s.email||!s.numero_telefonico||!s.password?a.innerHTML="Por favor, complete todos los campos excepto Número de referencia que es opcional":(u(s),console.log("Datos del formulario enviados:",s))}}),`<div class="container-fluid p-0">
     <div class="row m-0">
       <div class="col-12 p-0">
         <div class="login-card">
@@ -52,18 +52,10 @@
               </a>
             </div>
             <div class="login-main">
-              <form class="theme-form">
+              <form class="theme-form" id="fomulario_registro">
                 <h4>Crear una cuenta</h4>
                 <p>Ingrese sus datos personales para crear una cuenta</p>
-  
-                <div class="form-group">
-                  <label class="col-form-label pt-0">Numero de Referido</label>
-                  <div class="row g-2">
-                    <div class="col-12">
-                      <input class="form-control" type="text" name="numero_ref" id="numero_ref" placeholder="Ej.81273" required />
-                    </div>
-                  </div>
-                </div>
+
                 <div class="form-group">
                   <label class="col-form-label pt-0">Tu Datos</label>
                   <div class="row g-2">
@@ -81,24 +73,36 @@
                     <div class="col-12">
                       <input class="form-control" type="text" id="direccion" required="" placeholder="Direccion" />
                     </div>
-                    <div class="col-6">
+                    <div class="col-12">
                       <input class="form-control" type="text" id="ciudad" required="" placeholder="Ciudad" />
                     </div>
-                    <div class="col-6">
+                    <div class="col-12">
                       <input class="form-control" type="text" id="estado" required="" placeholder="Estado" />
+                    </div>
+                    <div class="col-12">
+                      <input class="form-control" type="text" id="codigopostal" required="" placeholder="Codigo Postal" />
                     </div>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-form-label">Datos de Contacto</label>
-                  <input class="form-control" type="email" name="email" required="" placeholder="Email" />
-                  <input class="form-control" type="number" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required placeholder="Telefono" maxLength={20} />
+                  <input class="form-control" type="email" name="email" id="email" required placeholder="Email" />
+                  <input class="form-control" type="number" id="numero_telefonico" name="numero_telefonico" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required placeholder="Telefono" maxLength="20" />
                 </div>
                 <div class="form-group">
                   <label class="col-form-label">Contraseña</label>
-                  <input class="form-control" type="password" name="password" required placeholder="*********" />
+                  <input class="form-control" type="password" name="password" id="password" required placeholder="*********" />
                 </div>
-  
+                                
+                <div class="form-group">
+                  <label class="col-form-label pt-0">Numero de Referido (<b>Opcional</b>)</label>
+                  <div class="row g-2">
+                    <div class="col-12">
+                      <input class="form-control" type="text" name="numero_ref" id="numero_ref" placeholder="Ej.81273" maxLength="12" minLength="6" onkeyup="verificacionLongitud()" />
+                    </div>
+                  </div>
+                </div>
+                <div id="mensaje"></div>
                 <div class="form-group mb-0">
                   <button class="btn btn-primary btn-block" type="submit">
                     Crear una cuenta
@@ -117,7 +121,7 @@
         </div>
       </div>
     </div>
-  </div>`,h=()=>`<div class="page-wrapper compact-wrapper" id="pageWrapper">
+  </div>`),h=()=>`<div class="page-wrapper compact-wrapper" id="pageWrapper">
     <!-- Page Header Start-->
     <div class="page-header">
       <div class="header-wrapper row m-0">
@@ -479,7 +483,7 @@
         </div>
       </footer>
     </div>
-  </div>`,f=()=>`<div class="tap-top"><i data-feather="chevrons-up"></i></div>
+  </div>`,b=()=>`<div class="tap-top"><i data-feather="chevrons-up"></i></div>
   <!-- tap on tap ends-->
   <!-- page-wrapper Start-->
   <div class="page-wrapper">
@@ -527,4 +531,4 @@
         </div>
       </div>
     </div>
-  </div>`,c=[{path:"/",component:{render:()=>m()}},{path:"/registro",component:{render:()=>u()}},{path:"/recuperacion_clave",component:{render:()=>f()}},{path:"/dashboard",component:{render:()=>h()}}];function g(){const l=window.location.pathname,s=c.find(e=>e.path===l);return{route:s,component:s?s.component:null}}const b={routes:c,match:g},y="/assets/logo-0116144d.png";document.addEventListener("DOMContentLoaded",()=>{document.getElementById("logo").src=y});const w=()=>{const{route:l,component:s}=b.match();return s.render()};document.querySelector("#app").innerHTML=w();
+  </div>`,c=[{path:"/",component:{render:()=>m()}},{path:"/registro",component:{render:()=>g()}},{path:"/recuperacion_clave",component:{render:()=>b()}},{path:"/dashboard",component:{render:()=>h()}}];function y(){const t=window.location.pathname,a=c.find(i=>i.path===t);return{route:a,component:a?a.component:null}}const w={routes:c,match:y},x="/assets/logo-0116144d.png";document.addEventListener("DOMContentLoaded",()=>{document.getElementById("logo").src=x});const k=()=>{const{route:t,component:a}=w.match();return a.render()};document.querySelector("#app").innerHTML=k();
