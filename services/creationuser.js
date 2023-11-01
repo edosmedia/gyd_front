@@ -26,25 +26,3 @@ export async function creationUser(data) {
       throw new Error("Error en la solicitud");
    }
 }
-
-
-let bodyContent = {
-   nombre: "Eduardo",
-   apellido: "Medrano",
-   direccion: "callex",
-   ciudad: "Region Metropolitana",
-   estado: "a",
-   telefono: "a",
-   email: "test@gmail.com",
-   nro_referido: "AB15422",
-   zip_code: "1224455",
-   usuario: "test1111222222222222222222221@gmail.com",
-   password: "demo",
-};
-
-let response = await fetch("http://test-ws.sial.cl:3113/v1/RegitroCliente/", {
-   method: "POST",
-   body: bodyContent,
-   headers: headersList,
-});
-console.log(await creationUser(bodyContent));

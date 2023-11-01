@@ -1,5 +1,5 @@
 import Login from "./components/Login";
-import Registro from "./components/registro";
+import Registro from "./components/Registro";
 import Dashboard from "./components/Dashboard" 
 import Recuperacion_c from "./components/Recuperacion_c";
 
