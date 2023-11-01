@@ -22,6 +22,7 @@ const Registro = () => {
       switch (resultado) {
         case 200:
           console.log("Número de Referido válido");
+          clearInterval(revisionAuto_ref)
           return true;
         case 404:
           console.log("Número de Referido no válido");
@@ -31,7 +32,7 @@ const Registro = () => {
           return false;
       }
     };
-    setInterval(verificacionLongitud, 10000);
+    const revisionAuto_ref = setInterval(verificacionLongitud, 15000);
 
     form.onsubmit = (e) => {
       e.preventDefault();
