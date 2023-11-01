@@ -1,7 +1,6 @@
 import { auth } from "../services/auth";
 
 const Login = () => {
-  
   document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("flogin");
     if (form) {
@@ -35,6 +34,9 @@ const Login = () => {
       if (req.status === 200) {
         location.assign("/dashboard");
       }
+      if (req.status === 401) {
+        document.getElementById("error").innerHTML = "Usuario o contraseña incorrecta";
+      }
 
       console.log(req);
     };
@@ -62,16 +64,18 @@ const Login = () => {
                   <label class="col-form-label">Contraseña</label>
                   <input class="form-control" id="contrasena" type="password" name="password" required="" placeholder="*********"></input>
                 </div>
-                <div class="checkbox p-0">
+                <div class="checkbox p-0 text-center">
                   <a class="link" href="/recuperacion_contrasena">
                     ¿Has olvidado tu contraseña?
                   </a>
-                  <button class="btn btn-primary btn-block" type="submit">
+                  <button class="btn btn-primary btn-block " type="submit">
                     Iniciar sesión
                   </button>
+                    <br>
+                    <br>
+              <b class="text-center" id="error"></b>
                 </div>
               </form>
-              <p id="error"></p>
               <p class="mt-4 mb-0">
                 ¿No tienes cuenta?
                 <a class="ms-2" href="/registro">

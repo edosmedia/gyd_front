@@ -22,3 +22,29 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+li.sidebar-list {
+  margin: 20px 0;
+}
+
+li.sidebar-list span {
+  padding: 0 20px;
+}
+
+
+.page-wrapper .sidebar-main-title>div {
+      background-color: rgba(0, 0, 0, 0.02) !important;
+      border-radius: 0px;
+      -webkit-border-radius: 0px;
+      -moz-border-radius: 0px;
+      -ms-border-radius: 0px;
+      -o-border-radius: 0px;
+}
+
+.page-wrapper .sidebar-main-title>h6 {
+  background-color: rgba(0, 0, 0, 0.02) !important;
+}
+
+.date-picker-setting {
+  background-color: rgba(255, 192, 0, 0.1);
+}

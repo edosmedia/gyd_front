@@ -4,7 +4,7 @@ import logo from "/assets/images/logo/logo.png";
 
 document.addEventListener("DOMContentLoaded", () => {
    document.getElementById("logo").src = logo;
-})
+});
 // Crea el componente raíz
 const App = () => {
    // Obtiene la ruta actual utilizando la función match

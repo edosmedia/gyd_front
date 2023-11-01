@@ -3,65 +3,70 @@ import { creationUser } from "../services/creationuser";
 import { getRef } from "../services/getRef";
 
 const Registro = () => {
-  document.addEventListener("DOMContentLoaded", () => {
-    const form = document.getElementById("fomulario_registro");
-    const mensaje = document.getElementById("mensaje");
-    const nro_referido = document.getElementById("numero_ref").value;
-    const verificacionLongitud = () => {
-      if (nro_referido.length < 6) {
-        console.error("El número de referencia debe tener al menos 6 caracteres");
-        return false;
-      }
-      if (nro_referido.length > 10) {
-        console.error("El número de referencia debe tener ser menor a 10 caracteres");
-        return false;
-      }
+   document.addEventListener("DOMContentLoaded", () => {
+      const form = document.getElementById("fomulario_registro");
+      const mensaje = document.getElementById("mensaje");
+      const nro_referido = document.getElementById("numero_ref").value;
+      const verificacionLongitud = () => {
+         if (nro_referido.length < 6) {
+            console.error("El número de referencia debe tener al menos 6 caracteres");
+            return false;
+         }
+         if (nro_referido.length > 10) {
+            console.error("El número de referencia debe tener ser menor a 10 caracteres");
+            return false;
+         }
 
-      const resultado = getRef(nro_referido);
+         const resultado = getRef(nro_referido);
 
-      switch (resultado) {
-        case 200:
-          console.log("Número de Referido válido");
-          clearInterval(revisionAuto_ref)
-          return true;
-        case 404:
-          console.log("Número de Referido no válido");
-          return false;
-        default:
-          console.log("Error en el servicio");
-          return false;
-      }
-    };
-    const revisionAuto_ref = setInterval(verificacionLongitud, 15000);
-
-    form.onsubmit = (e) => {
-      e.preventDefault();
-      const formData = {
-        nombre: document.getElementById("nombre").value,
-        apellido: document.getElementById("apellido").value,
-        direccion: document.getElementById("direccion").value,
-        ciudad: document.getElementById("ciudad").value,
-        estado: document.getElementById("estado").value,
-        numero_telefonico: document.getElementById("numero_telefonico").value,
-        email: document.getElementById("email").value,
-        nro_referido: document.getElementById("numero_ref").value,
-        zip_code: document.getElementById("codigopostal").value,
-        usuario: document.getElementById("email").value,
-        password: document.getElementById("password").value,
+         switch (resultado) {
+            case 200:
+               console.log("Número de Referido válido");
+               clearInterval(revisionAuto_ref);
+               return true;
+            case 404:
+               console.log("Número de Referido no válido");
+               return false;
+            default:
+               console.log("Error en el servicio");
+               return false;
+         }
       };
+      const revisionAuto_ref = setInterval(verificacionLongitud, 15000);
 
-      // Validación de campos (excepto numero_ref)
-      if (!formData.nombre || !formData.apellido || !formData.direccion || !formData.ciudad || !formData.estado || !formData.email || !formData.numero_telefonico || !formData.password) {
-        mensaje.innerHTML = "Por favor, complete todos los campos son obligarorios excepto Número de referencia que es opcional";
-      } else {
-        // Aquí puedes realizar más acciones con los datos, como enviarlos a un servidor
-        creationUser(formData);
-        console.log("Datos del formulario enviados:", formData);
-      }
-    };
-  });
+       form.onsubmit =  async (e) => {
+         e.preventDefault();
+         const formData = {
+            nombre: document.getElementById("nombre").value,
+            apellido: document.getElementById("apellido").value,
+            direccion: document.getElementById("direccion").value,
+            ciudad: document.getElementById("ciudad").value,
+            estado: document.getElementById("estado").value,
+            numero_telefonico: document.getElementById("numero_telefonico").value,
+            email: document.getElementById("email").value,
+            nro_referido: document.getElementById("numero_ref").value,
+            zip_code: document.getElementById("codigopostal").value,
+            usuario: document.getElementById("email").value,
+            password: document.getElementById("password").value,
+         };
 
-  return `<div class="container-fluid p-0">
+         // Validación de campos (excepto numero_ref)
+         if (!formData.nombre || !formData.apellido || !formData.direccion || !formData.ciudad || !formData.estado || !formData.email || !formData.numero_telefonico || !formData.password) {
+            mensaje.innerHTML = "Por favor, complete todos los campos son obligarorios excepto Número de referencia que es opcional";
+         } else {
+          
+            let res = await creationUser(formData);
+            console.log(res.mensaje)
+            if (res.status == 200) {
+               mensaje.innerHTML = "Creacion Exitosa";
+            }else {
+               mensaje.innerHTML = "Error en la creacion";
+            }
+         }
+      };
+   });
+
+   return `<div class="container-fluid p-0">
     <div class="row m-0">
       <div class="col-12 p-0">
         <div class="login-card">
@@ -123,8 +128,8 @@ const Registro = () => {
                   </div>
                 </div>
                 <div id="mensaje"></div>
-                <div class="form-group mb-0">
-                  <button class="btn btn-primary btn-block" type="submit">
+                <div class="form-group mb-0 text-center">
+                  <button class="btn btn-primary btn-block " type="submit">
                     Crear una cuenta
                   </button>
                 </div>

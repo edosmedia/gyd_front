@@ -1,6 +1,6 @@
 import Login from "./components/Login";
 import Registro from "./components/Registro";
-import Dashboard from "./components/Dashboard" 
+import Dashboard from "./components/Dashboard";
 import Lost from "./components/Lost";
 
 const routes = [
