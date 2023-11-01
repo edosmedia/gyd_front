@@ -1,7 +1,7 @@
 import Login from "./components/Login";
 import Registro from "./components/Registro";
 import Dashboard from "./components/Dashboard" 
-import Recuperacion_c from "./components/Recuperacion_c";
+import Lost from "./components/Lost";
 
 const routes = [
    {
@@ -21,10 +21,10 @@ const routes = [
       },
    },
    {
-      path: "/recuperacion_clave",
+      path: "/recuperacion_contrasena",
       component: {
          render: () => {
-            return Recuperacion_c();
+            return Lost();
          },
       },
    },

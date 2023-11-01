@@ -52,7 +52,7 @@ const Registro = () => {
 
       // Validación de campos (excepto numero_ref)
       if (!formData.nombre || !formData.apellido || !formData.direccion || !formData.ciudad || !formData.estado || !formData.email || !formData.numero_telefonico || !formData.password) {
-        mensaje.innerHTML = "Por favor, complete todos los campos excepto Número de referencia que es opcional";
+        mensaje.innerHTML = "Por favor, complete todos los campos son obligarorios excepto Número de referencia que es opcional";
       } else {
         // Aquí puedes realizar más acciones con los datos, como enviarlos a un servidor
         creationUser(formData);

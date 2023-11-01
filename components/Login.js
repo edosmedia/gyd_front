@@ -63,7 +63,7 @@ const Login = () => {
                   <input class="form-control" id="contrasena" type="password" name="password" required="" placeholder="*********"></input>
                 </div>
                 <div class="checkbox p-0">
-                  <a class="link" href="/contrasena_perdida/">
+                  <a class="link" href="/recuperacion_contrasena">
                     ¿Has olvidado tu contraseña?
                   </a>
                   <button class="btn btn-primary btn-block" type="submit">

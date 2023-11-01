@@ -1,9 +1,5 @@
-import { auth } from "../services/auth";
-
-const Recuperacion_c = () => {
-
-  
-   return `<div class="tap-top"><i data-feather="chevrons-up"></i></div>
+function Lost() {
+ return `<div class="tap-top"><i data-feather="chevrons-up"></i></div>
   <!-- tap on tap ends-->
   <!-- page-wrapper Start-->
   <div class="page-wrapper">
@@ -52,6 +48,6 @@ const Recuperacion_c = () => {
       </div>
     </div>
   </div>`;
-};
+}
 
-export default Recuperacion_c;
+export default Lost;
